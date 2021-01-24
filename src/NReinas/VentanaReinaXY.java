@@ -50,11 +50,12 @@ public class VentanaReinaXY extends JFrame {
     private JMenu menu;
     private JMenuItem inicio;
     private JMenuItem nTablero;
-    private JMenu soluciones;
+    private JMenu vSolucion;
+    private JMenuItem queen;
     private JMenuItem changePos;
 
     public VentanaReinaXY(int n, int x, int y) {
-        super(n + "-Reinas (" + x + ", " + y + ")");
+        super("NReinas XY");
         nMAX = n;
         xReina = x;
         yReina = y;
@@ -64,7 +65,8 @@ public class VentanaReinaXY extends JFrame {
 
         while (!possible) {
             JOptionPane.showMessageDialog(null, "No existen soluciones!");
-            possible = createIT(sizeTablero());
+            this.nMAX = sizeTablero();
+            possible = createIT(nMAX);
         }
         solucion = tablero.getTablero();
         initComponents();
@@ -87,7 +89,9 @@ public class VentanaReinaXY extends JFrame {
         menu = new JMenu("Menú");
         inicio = new JMenuItem("Menú Principal");
         nTablero = new JMenuItem("Cambiar tamaño");
-        soluciones = new JMenu("Soluciones");
+        vSolucion = new JMenu("Solución");
+        queen = new JMenuItem("Reina ( " + xReina + ", " + yReina + " ) - "
+                + "N: " + this.nMAX);
         changePos = new JMenuItem("Cambiar posición");
 
         //Tablero
@@ -158,11 +162,12 @@ public class VentanaReinaXY extends JFrame {
 
         // Añadimos componentes
         menu.add(inicio);
-        menu.add(nTablero);
         barraMenu.add(menu);
 
-        soluciones.add(changePos);
-        barraMenu.add(soluciones);
+        vSolucion.add(queen);
+        vSolucion.add(nTablero);
+        vSolucion.add(changePos);
+        barraMenu.add(vSolucion);
 
         this.setJMenuBar(barraMenu);
     }
@@ -213,7 +218,8 @@ public class VentanaReinaXY extends JFrame {
             yReina = Integer.parseInt(seleccion.toString());
             tablero = new Tablero(nMAX, xReina, yReina);
             solucion = tablero.getTablero();
-            return tablero.solveXY(solucion, 0);
+            boolean posible = tablero.solveXY(solucion, 0);
+            return posible;
         } catch (NumberFormatException e) {
         }
         return false;
