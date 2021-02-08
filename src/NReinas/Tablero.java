@@ -6,7 +6,7 @@ public class Tablero {
 
     private int[][] board;
     private static int MAX;
-    private boolean Possible;
+    //private boolean Possible;
     private ArrayList<Soluciones> soluciones;
     private int numSol;
     private int[] Qx;
@@ -23,7 +23,7 @@ public class Tablero {
         System.out.println("////////////////////");
         System.out.println("//// SIMULACIÓN ////");
         System.out.println("////////////////////\n");
-        Possible = false;
+        //Possible = false;
         numSol = 0;
         soluciones = new ArrayList<Soluciones>();
         MAX = size;
@@ -107,7 +107,7 @@ public class Tablero {
             }
         }
 
-        // LEFT DOWN DIAGONAL
+        // RIGHT DOWN DIAGONAL
         for (i = row, j = col; i < MAX && j < MAX; i++, j++) {
             if (board[i][j] == 1) {
                 return false;
@@ -118,6 +118,7 @@ public class Tablero {
     }
 
     public boolean solution(int board[][], int col) {
+        boolean posible = false;
         /* base case: If all queens are placed  
         then return true */
         if (col == MAX) {
@@ -129,7 +130,7 @@ public class Tablero {
             //temp.print(MAX);
             soluciones.add(temp);
             soluciones.get(numSol - 1).print(MAX);
-            Possible = true;
+            //Possible = true;
             return true;
         }
 
@@ -145,7 +146,7 @@ public class Tablero {
 
                 // Make result true if any placement  
                 // is possible  
-                Possible = solution(board, col + 1) || Possible;
+                posible = solution(board, col + 1) || posible;
 
                 /* If placing queen in board[i][col]  
                 doesn't lead to a solution, then  
@@ -156,7 +157,7 @@ public class Tablero {
 
         /* If queen can not be place in any row in  
             this column col then return false */
-        return Possible;
+        return posible;
     }
 
     /**
@@ -196,9 +197,8 @@ public class Tablero {
     }
 
     public boolean solveNQ() {
-        Possible = solution(board, 0);
-        System.out.print("Número de soluciones: " + numSol);
-        return numSol != 0;
+        System.out.println("Número de soluciones: " + numSol);
+        return solution(board, 0);
     }
 
     public void printSol() {
