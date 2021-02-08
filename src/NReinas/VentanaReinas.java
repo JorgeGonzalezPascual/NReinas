@@ -185,22 +185,24 @@ public class VentanaReinas extends JFrame {
 
     }
 
-    private String[] sSoluciones(int n) {
-        String sSoluciones[] = new String[nSoluciones];
-        for (int i = 0; i < nSoluciones; i++) {
-            String s = "";
-            s += i;
-            sSoluciones[i] = s;
-        }
-        return sSoluciones;
-    }
-
+    /**
+     * Método que pone la imagen de la reina
+     *
+     * @param x
+     * @param y
+     */
     private void setQueen(int x, int y) {
         imagen = new ImageIcon(rutaImagenQueen);
         casillas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(SIZE - 20, SIZE - 20, Image.SCALE_DEFAULT)));
         casillas[x][y].setOpaque(true);
     }
 
+    /**
+     * Método que pone la imagen en blanco o en negro
+     *
+     * @param x
+     * @param y
+     */
     private void setBox(String color, int x, int y) {
 
         if (color.equals("white")) {
@@ -213,7 +215,19 @@ public class VentanaReinas extends JFrame {
         casillas[x][y].setIcon(imagen);
     }
 
+    /**
+     * Método para enseñar por pantalla la ventana para escoger la solución
+     *
+     * @return
+     */
     private int selecSol() {
+        String sSoluciones[] = new String[nSoluciones];
+        for (int i = 0; i < nSoluciones; i++) {
+            String s = "";
+            s += i;
+            sSoluciones[i] = s;
+        }
+
         Object seleccion = JOptionPane.showInputDialog(
                 null,
                 "Seleccione solución",
@@ -221,7 +235,7 @@ public class VentanaReinas extends JFrame {
                 JOptionPane.QUESTION_MESSAGE,
                 null, // null para icono defecto
                 //Creamos un array de Strings para que el usuario pueda elegir
-                sSoluciones(nSoluciones),
+                sSoluciones,
                 "Soluciones");
 
         return Integer.parseInt(seleccion.toString());

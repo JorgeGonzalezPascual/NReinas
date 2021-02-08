@@ -30,8 +30,8 @@ public class Tablero {
         MAX = size;
         board = new int[MAX][MAX];
         inIt();
-        // PRINT INITIALIZED MATRIX
-        Print();
+        // Printeamos el tablero
+        printSol();
 
         solveNQ();
     }
@@ -159,13 +159,22 @@ public class Tablero {
         return Possible;
     }
 
+    /**
+     * Backtracking para la solcion del problema. Devuelve verdadero si todas
+     * las reinas han sido colocadas.
+     *
+     * @param board
+     * @param col
+     * @return
+     */
     boolean solveXY(int board[][], int col) {
+        //Para printear información
         int counter = 0;
-        // IF ALL THE QUEENS ARE ON THE BOARD RETURN TRUE.
         System.out.println("Paso nº" + counter);
-        Print();
+        printSol();
         counter++;
         System.out.println("\n");
+        //
         if (col == Usery) {
             col++;
         }
@@ -174,29 +183,25 @@ public class Tablero {
         }
         for (int i = 0; i < MAX; i++) {
             if (isSafe(board, i, col)) {
-                // PLACE THE QUEEN IN THE MATRIX
+                // Colocamos la reina si es seguro
                 board[i][col] = 1;
                 if (solveXY(board, col + 1) == true) {
                     return true;
                 }
-                board[i][col] = 0; // BACKTRACK 
+                board[i][col] = 0; //BACKTRACK 
                 System.out.println("\nBack!");
             }
         }
         return false;
     }
-    
+
     public boolean solveNQ() {
         Possible = solution(board, 0);
         System.out.print("Número de soluciones: " + numSol);
-        if (numSol == 0) {
-            return false;
-        }
-
-        return true;
+        return numSol != 0;
     }
 
-    public void Print() {
+    public void printSol() {
         for (int i = 0; i < MAX; i++) {
             for (int j = 0; j < MAX; j++) {
                 System.out.print(board[i][j] + " ");

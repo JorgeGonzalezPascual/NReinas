@@ -13,12 +13,10 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import static NReinas.VentanaIntro.sizeTablero;
 
 /**
@@ -29,7 +27,6 @@ public class VentanaReinaXY extends JFrame {
 
     //Tamaño Pantalla
     private static final int SIZE = 50; //Tamaño de los botones
-    private static final String rutaImagen = "Images/queen.png";
     private static final String WHITE = "white";
     private static final String BLACK = "black";
 
