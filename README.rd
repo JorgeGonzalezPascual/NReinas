@@ -1,6 +1,8 @@
-# Creación de reinas segun el tablero y posición
+# Creación de Reinas segun  posición y tablero de ajedrez
+- Autor: 
+    * Jorge González Pascual
  
- 
+*Opciones:
   1) NReinas:
    Dadas n reinas en un tablero de nxn calcular todas las posibles soluciones.
  
