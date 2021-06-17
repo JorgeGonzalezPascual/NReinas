@@ -1,4 +1,4 @@
-#Creación de reinas segun el tablero y posición
+# Creación de reinas segun el tablero y posición
  
  
   1) NReinas:
