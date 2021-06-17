@@ -2,7 +2,7 @@
 - Autor: 
     * Jorge González Pascual
  
-*Opciones:
+* Opciones:
   1) NReinas:
    Dadas n reinas en un tablero de nxn calcular todas las posibles soluciones.
  
